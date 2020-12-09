@@ -1,0 +1,41 @@
+html{
+    background-color: rgb(33, 33, 33);
+}
+
+#boggle{
+    max-width: 500px;
+    margin: auto;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+
+ #game-title{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+ }
+
+ .game-over{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+ }
+
+ .game-cell:hover{
+
+    background-color: rgba(0, 199, 169,0.5);
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.has-last-border{
+    border: 2px solid #4500C7;
+}
+
+.selected{
+    background-color: rgb(0, 199, 169);
+    border-radius: 10%;
+}
+
+.purple{
+
+    color: #4500C7;
+}

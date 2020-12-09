@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{%block title%}Boggle{%endblock%}
+
+{%block content%}
+    
+    <!-- full game container -->
+    <div id="boggle" class="box mt-6">
+
+        <!-- notifications -->
+        <div id="wrong-order" class="notification is-primary has-text-centered" hidden>
+            <button class="delete delete-button"></button>
+            You have to click back <span class="purple">the way you came</span>!
+        </div>
+        <div id="duplicate-warning" class="notification is-danger has-text-centered" hidden>
+            <button class="delete delete-button"></button>
+            No duplicates allowed!
+        </div>
+
+        <!-- title letters to be animated -->
+        <h1 class="title is-1 has-text-centered">
+            <span class="ttl top-title-letter">B</span>
+            <span class="ttl top-title-letter">G</span>
+            <span class="ttl top-title-letter">L</span>
+        </h1>
+        <h1 class="title is-1 has-text-centered">
+            <span class="ttl bottom-title-letter">O</span>
+            <span class="ttl bottom-title-letter">G</span>
+            <span class="ttl bottom-title-letter">E</span>
+        </h1>
+
+        <!-- Titles -->
+        <h1 class="title is-1 has-text-centered has-text-primary" hidden id="game-title">BOGGLE</h1>
+        <h1 class="title is-1 has-text-centered has-text-primary game-over" hidden id="game-over">Game Over</h1>
+
+        <!-- scoreboard display -->
+        <div id="game-data" class="level is-mobile">
+            <div id="time-element" class="level-item has-text-centered">
+              <div>
+                <p class="heading">Time</p>
+                <p id="time" class="title">00:00</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Score</p>
+                <p id="score" class="title">0</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Plays</p>
+                <p id="num-plays" class="title">{{session["plays"]}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Top Score</p>
+                <p id="top-score" class="title">{{session["top_score"]}}</p>
+              </div>
+            </div>
+        </div>
+
+        <!-- start button -->
+        <div id='replay-button-container' class="has-text-centered is-hidden">
+            
+            <a href="/" class="button is-primary">Play Again?</a>
+        </div>
+          
+        <!-- in-game buttons -->
+        <div id="start-button" class="columns is-centered">
+            <div class="column is-half has-text-centered">
+                <button class="button is-primary">Start Game!</button>
+            </div>
+        </div>
+
+        <!-- game board -->
+        <div class="box is-hidden" id="game-board">
+
+            {%for row in session["board"]%}
+                
+                <div id="game-row" class="columns is-mobile">
+            
+                    {%for cell in row%}
+            
+                    <div class="column is-one-fifth has-text-centered has-text-grey-darker game-cell">{{cell}}</div>
+                
+                    {%endfor%}
+                </div>
+            {%endfor%}
+        </div>
+
+        <!--  player guess form -->
+        <div id="word-form" class="container" hidden>
+
+            <div class="field">
+
+                <label for="word-input"></label>
+                <div class="control">
+                    <input class="input" id="word-input" type="text" placeholder="enter guess" name="word-guess" required>
+                </div>
+            </div>
+
+            <div class="field has-text-centered">
+                <div class="control">
+                    <button id="guess-button" class="button is-primary">Guess!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- player guesses table -->
+        <table id="word-list" class="table is-hidden is-hoverable is-fullwidth mt-3 has-text-centered">
+
+            <thead>
+                <tr>
+                    <th>Guess</th>
+                    <th>Word Status</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+{%endblock%}
+
